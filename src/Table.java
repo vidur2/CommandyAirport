@@ -1,5 +1,3 @@
-package CommandyAirport.src;
-
 import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -9,21 +7,19 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Properties;
 
-public abstract class Table {
-    private Connection conn;
-    private HashMap<Integer, WidgetRecord> results;
-    private ResultSet rs;
+public abstract class Table<T> {
+    protected Connection conn;
+    protected HashMap<T, WidgetRecord<T>> results;
+    protected ResultSet rs;
 
     
-    public Table(HashMap<Integer, WidgetRecord> results, ResultSet rs) {
+    public Table(HashMap<T, WidgetRecord<T>> results) {
         this.results = results;
-        this.rs = rs;
     }
 
 
     public boolean connectDb() {
 		try {
-			// Class.forName("com.mysql.jdbc.Driver");
 			String loadPath = getDbConfigPath();
 			FileInputStream inFile = new FileInputStream(loadPath);
 			Properties props = new Properties();
@@ -31,7 +27,7 @@ public abstract class Table {
 			
 			conn = DriverManager.getConnection(props.getProperty("dbUrl"), props.getProperty("dbUser"), null);
 			//Internal test  code
-			mapDatabase();
+			loadResults();
 		
 		}catch(Exception e) {
 			System.out.println(e);
@@ -42,6 +38,7 @@ public abstract class Table {
 		
 	public boolean disconnectDb() {
 		try {
+            mapDatabase();
 			conn.close();
 		}catch(Exception e){
 			System.out.println(e);
@@ -51,8 +48,8 @@ public abstract class Table {
 	}
 
 
-    public ArrayList<WidgetRecord> findById(HashSet<Integer> ids) {
-        ArrayList<WidgetRecord> retVal = new ArrayList<>();
+    public ArrayList<WidgetRecord<T>> findById(HashSet<Integer> ids) {
+        ArrayList<WidgetRecord<T>> retVal = new ArrayList<>();
         for (Integer id: ids) {
             retVal.add(results.get(id));
         }
@@ -65,10 +62,10 @@ public abstract class Table {
     public void setConn(Connection conn) {
         this.conn = conn;
     }
-    public HashMap<Integer, WidgetRecord> getResults() {
+    public HashMap<T, WidgetRecord<T>> getResults() {
         return results;
     }
-    public void setResults(HashMap<Integer, WidgetRecord> results) {
+    public void setResults(HashMap<T, WidgetRecord<T>> results) {
         this.results = results;
     }
     public ResultSet getRs() {
@@ -83,15 +80,15 @@ public abstract class Table {
 
     protected abstract String getDbConfigPath();
 
-    public abstract WidgetRecord getItem(int id);
+    public abstract WidgetRecord<T> getItem(T id);
 
-    public abstract String addRecord(WidgetRecord w);
+    public abstract String addRecord(WidgetRecord<T> w);
 
     public abstract String loadResults(); 
 
-    public abstract String editRecord(WidgetRecord w);
+    public abstract String editRecord(WidgetRecord<T> w);
 
-    public abstract String deleteRecord(WidgetRecord w);
+    public abstract String deleteRecord(WidgetRecord<T> w);
 
     public abstract int fetchLastId();
 

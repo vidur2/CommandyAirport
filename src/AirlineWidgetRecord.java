@@ -1,8 +1,8 @@
-package CommandyAirport.src;
+import java.util.HashSet;
 
 import java.util.HashSet;
 
-public class AirlineWidgetRecord extends WidgetRecord {
+public class AirlineWidgetRecord extends WidgetRecord<Integer> {
 
     //Add fields here
 
