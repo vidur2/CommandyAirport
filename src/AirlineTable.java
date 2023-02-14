@@ -1,13 +1,14 @@
-package CommandyAirport.src;
+import java.sql.ResultSet;
+import java.util.HashMap;
 
 import java.sql.ResultSet;
 import java.util.HashMap;
 
-public class AirlineTable extends Table{
+public class AirlineTable extends Table<String> {
 
     
-    public AirlineTable(HashMap<Integer, WidgetRecord> results, ResultSet rs) {
-        super(results, rs);
+    public AirlineTable(HashMap<String, WidgetRecord<String>> results, ResultSet rs) {
+        super(results);
         //TODO Auto-generated constructor stub
     }
 
@@ -24,13 +25,13 @@ public class AirlineTable extends Table{
     }
 
     @Override
-    public WidgetRecord getItem(int id) {
+    public WidgetRecord<String> getItem(String id) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public String addRecord(WidgetRecord w) {
+    public String addRecord(WidgetRecord<String> w) {
         // TODO Auto-generated method stub
         return null;
     }
@@ -42,13 +43,13 @@ public class AirlineTable extends Table{
     }
 
     @Override
-    public String editRecord(WidgetRecord w) {
+    public String editRecord(WidgetRecord<String> w) {
         // TODO Auto-generated method stub
         return null;
     }
 
     @Override
-    public String deleteRecord(WidgetRecord w) {
+    public String deleteRecord(WidgetRecord<String> w) {
         // TODO Auto-generated method stub
         return null;
     }

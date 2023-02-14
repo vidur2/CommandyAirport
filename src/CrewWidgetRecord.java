@@ -2,7 +2,8 @@ package CommandyAirport.src;
 
 import java.util.HashSet;
 
-public class CrewWidgetRecord extends WidgetRecord {
+public class CrewWidgetRecord extends WidgetRecord<Integer> {
+    private Integer id;
     private String ein;
     private HashSet<Integer> flightKeys;
     private HashSet<Integer> crewMemberKeys;
@@ -18,9 +19,17 @@ public class CrewWidgetRecord extends WidgetRecord {
         this.scheduledFlightKeys = scheduledFlightKeys;
     }
 
+    public Integer getId() {
+        return id;
+    }
+
     public String getEin() {
         return ein;
     }
+    public void setId(Integer ein) {
+        this.id = ein;
+    }
+
     public void setEin(String ein) {
         this.ein = ein;
     }

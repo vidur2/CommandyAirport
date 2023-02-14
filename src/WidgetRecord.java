@@ -1,16 +1,12 @@
-package CommandyAirport.src;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.HashSet;
 
-public abstract class WidgetRecord {
-    protected int id;
+public abstract class WidgetRecord<T> {
+    protected T id;
 
-    public int getId() {
+    public T getId() {
         return id;
     }
-    public void setId(int id) {
+    public void setId(T id) {
         this.id = id;
     }
 
