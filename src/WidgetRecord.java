@@ -12,5 +12,5 @@ public abstract class WidgetRecord<T> {
 
 
     protected abstract HashSet<Integer> getForiegnKeys(TableOption table);
-    public abstract void addRelation(TableOption table, int foriegnKey);
+    public abstract void addRelation(TableOption table, int foreignKey);
 }
