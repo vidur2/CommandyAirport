@@ -1,0 +1,6 @@
+#grid_pane {
+	-fx-background-image: url("planebackround.jpeg");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+    -fx-background-position: left top;
+}
